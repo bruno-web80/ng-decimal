@@ -9,7 +9,6 @@
                 return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
             }
             var formatNumber = function(_num, d) {
-                console.log('_num0',_num,d);
                 if (d==undefined) {
                     if (nDecimal == undefined) {
                         d = decimalPlaces(_num);
@@ -17,9 +16,6 @@
                         d = nDecimal;
                     }
                 }
-                console.log('_num1',_num,d);
-                //_num = parseFloat(_num);
-                //console.log('_num2',_num);
                 return (isNaN(d) || d === undefined) ? $filter('number')(_num) : $filter('number')(_num, d);
             };
             var getNumber = function(_num, d) {
@@ -38,7 +34,6 @@
                 } else {
                     var num = 0;
                 }
-                console.log('_num',_num,d);
                 if (!isNaN(d) || d !== undefined && d!==decimalPlaces(_num)) num = num.toFixed(d);
                 return num;
             };
@@ -66,7 +61,6 @@
                     });
                     ctrl.$formatters.unshift(
                         function(modelValue) {
-                            console.log('formater',modelValue,attrs.decimal);
                             return modelValue === undefined ? modelValue : formatNumber(modelValue);
                         }
                     );
