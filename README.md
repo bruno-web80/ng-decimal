@@ -45,14 +45,14 @@ angular.module('myApp', ['ng-decimal']);
 
 >
 ``` html
-<input type="text" model="yourModel" ng-currency maxdecimal="3" />
+<input type="text" model="yourModel" ng-decimal maxdecimal="3" />
 ```
 
 + If you want to be able to dynamically change maxdecimal
 
 >
 ``` html
-<input type="text" model="yourModel" ng-currency min="1" maxdecimal="my_scope_variable" />
+<input type="text" model="yourModel" ng-decimal maxdecimal="my_scope_variable" />
 ```
 
 ## Authors
