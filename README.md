@@ -6,7 +6,7 @@ AngularJS Directive for decimal numbers.
 Main features:
 
 * Permits work with decimal numbers
-* Has a decimal limiter  (default: 3)
+* Has a decimal limiter
 * The only required dependency is angular!
 * Input value is always filtered with locale number when load and on blur (with the decimal limit).
 
@@ -45,14 +45,14 @@ angular.module('myApp', ['ng-decimal']);
 
 >
 ``` html
-<input type="text" model="yourModel" ng-decimal maxdecimal="3" />
+<input type="text" model="yourModel" ng-decimal decimal="3" />
 ```
 
 + If you want to be able to dynamically change maxdecimal
 
 >
 ``` html
-<input type="text" model="yourModel" ng-decimal maxdecimal="my_scope_variable" />
+<input type="text" model="yourModel" ng-decimal decimal="my_scope_variable" />
 ```
 
 ## Authors
