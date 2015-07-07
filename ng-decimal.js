@@ -1,8 +1,8 @@
     angular.module('ng-decimal', [])
-        .directive('ngDecimal', function($filter) {
+        .directive('ngDecimal', ['$filter', '$interpolate', function($filter, $interpolate) {
             var FLOAT_REGEXP_1 = /^\$?\d+(.\d{3})*(\,\d*)?$/; //Numbers like: 1.123,56
             var FLOAT_REGEXP_2 = /^\$?\d+(,\d{3})*(\.\d*)?$/; //Numbers like: 1,123.56
-            var nDecimal = undefined;
+            var nDecimal = 0;
             var decimalPlaces = function(num) {
                 var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
                 if (!match) return 0;
@@ -39,13 +39,15 @@
             };
             return {
                 require: 'ngModel',
-                replace: true,
-                scope: {
-                    decimal: '='
-                },
+                scope: false,
+                restrict: 'A',
                 link: function(scope, elm, attrs, ctrl) {
-                    scope.$watch('decimal', function(newValue, oldValue) {
-                        nDecimal = newValue;
+                    attrs.$observe('decimal', function(newValue) {
+                        if (newValue==undefined || newValue=="" || isNaN(newValue)) {
+                            nDecimal=0;
+                        }  else {
+                            nDecimal = newValue;
+                        }
                         var newNumber = getNumber(elm.val());
                         ctrl.$setViewValue(formatNumber(newNumber));
                         ctrl.$render();
@@ -66,4 +68,4 @@
                     );
                 }
             };
-        });
+        }]);
